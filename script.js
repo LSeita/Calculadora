@@ -1,3 +1,13 @@
+const buttons = document.querySelectorAll(".button");
+const display = document.querySelector(".display");
+display.textContent = 0;
+
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        if(!isNaN(button.value)) updateDisplay(button.value)
+    })
+})
+
 
 function operate(num1, num2, operator){
     switch(operator){
@@ -14,8 +24,14 @@ function operate(num1, num2, operator){
     }
 }
 
+let updateDisplay = displayValue => {
+    if(!isNaN(displayValue)){
+        display.textContent == 0 ? display.textContent = displayValue 
+                                 : display.textContent += displayValue;
+    }
+}
 
-
+//Operations
 let divide = (num1, num2) => num1/num2;
 let subtract = (num1, num2) => num1-num2;
 let multiply = (num1, num2) => num1 * num2;
