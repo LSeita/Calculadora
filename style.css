@@ -20,9 +20,10 @@
     font-size: 60px;
     grid-column: -1/1;
     align-items: end;
-    background-color: gray;
+    background-color: rgb(167, 165, 165);
     margin-bottom: 5px;
     border: 3px black solid;
+    border-radius: 5px;
 }
 
 .button{
@@ -31,6 +32,7 @@
     border-radius: 5px;
     padding-left: 5px;
     padding-right: 5px;
+    font-weight: bold;
 }
 
 .number{
