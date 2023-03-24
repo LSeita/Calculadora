@@ -44,10 +44,23 @@ buttons.forEach(button => {
                 }
             }
         }
+
         if(button.classList.contains("special")){
-            if(button.value === "AC"){
-                resetValues();
-                updateDisplay();
+            switch(button.value){
+                case "AC":
+                    resetValues();
+                    updateDisplay();
+                    break;
+
+                case "+/-":
+                    displayValue *= -1;
+                    updateDisplay();
+                    break;
+                
+                case "%":
+                    displayValue /= 100;
+                    updateDisplay();
+                    break;
             }
         }
     })
