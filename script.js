@@ -10,8 +10,19 @@ buttons.forEach(button => {
     button.addEventListener("click", () => {
         if(button.classList.contains("number")){
             if(!operand1){
-                displayValue == 0 ? displayValue = button.value 
-                                  : displayValue += button.value;
+                let stringDisplay = String(displayValue);
+                if(displayValue == 0){
+                     displayValue = button.value
+                }
+                else{
+                    if(button.value == "."){
+                        if(!stringDisplay.includes(".")){
+                            displayValue += button.value;
+                        }
+                    }else{
+                     displayValue += button.value;
+                    }
+                }
                 updateDisplay();
             }else{
                 displayValue == operand1 ? displayValue = button.value
@@ -67,6 +78,7 @@ buttons.forEach(button => {
 })
 
 function updateDisplay(){
+    if(displayValue === ".") displayValue = "0.";
     display.textContent = displayValue;
     if(displayValue.length > 9) {
         display.textContent = displayValue.substring(0, 9);
