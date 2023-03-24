@@ -1,6 +1,7 @@
 const buttons = document.querySelectorAll(".button");
 const display = document.querySelector(".display");
 let operand1, operand2, operator;
+let result;
 let displayValue = 0;
 let opSigns = ["/", "*", "+", "-"];
 
@@ -49,7 +50,8 @@ buttons.forEach(button => {
                     //Realizes the operation
                     case false:
                         operand2 = displayValue
-                        displayValue = operate(operand1, operand2, operator);
+                        result = operate(operand1, operand2, operator);
+                        displayValue = roundNumber(result, 15).toString();
                         updateDisplay();
                         operand1 = displayValue;
                         operator = button.value;
@@ -60,7 +62,8 @@ buttons.forEach(button => {
             if(button.value === "="){
                 if(operand1){
                     operand2 = displayValue;
-                    displayValue = operate(operand1, operand2, operator);
+                    result = operate(operand1, operand2, operator);
+                    displayValue = roundNumber(result, 15).toString();
                     updateDisplay();
                     resetValues();
                 }
@@ -105,6 +108,10 @@ function resetValues(){
     operator = null;
 }
 
+//Rounds large numbers
+function roundNumber(num, decimals) {
+    return parseFloat(Math.round(num + 'e' + decimals) + 'e-' + decimals);
+}
 
 function operate(num1, num2, operator){
     switch(operator){
