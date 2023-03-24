@@ -8,35 +8,45 @@ updateDisplay();
 
 buttons.forEach(button => {
     button.addEventListener("click", () => {
+        //If button pressed is part of the "Number" group
         if(button.classList.contains("number")){
+            //First operand input
             if(!operand1){
                 let stringDisplay = String(displayValue);
+                //First character
                 if(displayValue == 0){
                      displayValue = button.value
                 }
                 else{
+                    //Decimal filter
                     if(button.value == "."){
                         if(!stringDisplay.includes(".")){
                             displayValue += button.value;
                         }
-                    }else{
+                    }
+                    else{
                      displayValue += button.value;
                     }
                 }
                 updateDisplay();
+            //Second operand input
             }else{
                 displayValue == operand1 ? displayValue = button.value
                                          : displayValue += button.value;
                 updateDisplay();
             }
         }
+
+        //If button pressed is part of the "Operator" group
         if(button.classList.contains("operator")){
             if(opSigns.includes(button.value)){
                 switch(!operand1){
+                    //Archives first part of the operation
                     case true:
                         operand1 = displayValue;
                         operator = button.value;
                         break;
+                    //Realizes the operation
                     case false:
                         operand2 = displayValue
                         displayValue = operate(operand1, operand2, operator);
@@ -46,6 +56,7 @@ buttons.forEach(button => {
                         break;
                 }
             }
+            //Reset the operations upon pressing "="
             if(button.value === "="){
                 if(operand1){
                     operand2 = displayValue;
@@ -56,6 +67,7 @@ buttons.forEach(button => {
             }
         }
 
+        //If button pressed is part of the "Special" group
         if(button.classList.contains("special")){
             switch(button.value){
                 case "AC":
@@ -77,6 +89,7 @@ buttons.forEach(button => {
     })
 })
 
+//Changes the value displayed on calculator screen
 function updateDisplay(){
     if(displayValue === ".") displayValue = "0.";
     display.textContent = displayValue;
